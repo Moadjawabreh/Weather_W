@@ -5,6 +5,9 @@ using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace Weather
 {
@@ -16,7 +19,27 @@ namespace Weather
         {
             InitializeComponent();
 			DataContext = new WeatherInfoViewModel();
+
+
 		}
+
+		//private void mapView_Loaded(object sender, RoutedEventArgs e)
+		//{
+		//	GMaps.Instance.Mode = AccessMode.ServerAndCache;
+		//	// Choose your provider here
+		//	mapView.MapProvider = GMapProviders.OpenStreetMap;
+		//	mapView.MinZoom = 2;
+		//	mapView.MaxZoom = 17;
+		//	// Whole world zoom
+		//	mapView.Zoom = 2;
+		//	// Lets the map use the mousewheel to zoom
+		//	mapView.MouseWheelZoomType = MouseWheelZoomType.MousePositionAndCenter;
+		//	// Lets the user drag the map
+		//	mapView.CanDragMap = true;
+		//	// Lets the user drag the map with the left mouse button
+		//	mapView.DragButton = MouseButton.Left;
+		//}
+
 
 		private async void GetWeather_Click(object sender, RoutedEventArgs e)
 		{
@@ -166,9 +189,28 @@ namespace Weather
             int index = (int)Math.Round((degrees % 360) / 22.5);
             return cardinalDirections[index % 16];
         }
-    }
 
-    public class WeatherData
+
+
+	
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			GoogleMaps googleMapsWindow = new GoogleMaps();
+			googleMapsWindow.LocationSelected += GoogleMapsWindow_LocationSelected;
+			googleMapsWindow.Show();
+		}
+		private void GoogleMapsWindow_LocationSelected(object sender, LocationSelectedEventArgs e)
+		{
+			double latitude = e.Latitude;
+			double longitude = e.Longitude;
+
+			latitudeTextBox.Text= latitude.ToString();
+			longitudeTextBox.Text= longitude.ToString();
+		}
+	}
+
+	public class WeatherData
     {
         public double Longitude { get; set; }
         public double Latitude { get; set; }

@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Weather"
         mc:Ignorable="d"
-        Title="Weather Forecast" Height="450" Width="800"
-        Icon="C:\Users\DELL\Desktop\Travel\Images\Weather Icon.jpeg" Foreground="#FF090C0B"
-        >
+        Title="Weather Forecast" Height="450" Width="800" 
+         MinWidth="800"
+        MinHeight="450"
+        Icon="C:\Users\DELL\Desktop\Travel\Images\Weather Icon.jpeg" Foreground="#FF090C0B">
     <Window.Background>
+
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFABA5DA" Offset="0.616"/>
             <GradientStop Color="#FFD2A24B" Offset="0.941"/>
@@ -21,44 +23,20 @@
         </LinearGradientBrush>
     </Window.Background>
 
-
-    <!--<Window.Template>
-        <ControlTemplate TargetType="Window">
-            <Grid>
-                -->
-    <!-- Your custom title bar with image icon -->
-    <!--
-                <Border Background="#FFDCB8B8" Height="30" VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal">
-                        -->
-    <!-- Image icon -->
-    <!--
-                        <Image Source="icon.png" Width="20" Height="20" Margin="5"/>
-                        -->
-    <!-- Title text -->
-    <!--
-                        <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="5"/>
-                    </StackPanel>
-                </Border>
-                -->
-    <!-- Content presenter for the rest of the window content -->
-    <!--
-                <ContentPresenter/>
-            </Grid>
-        </ControlTemplate>
-    </Window.Template>-->
-    <!-- Your window content goes here -->
-
     <Window.DataContext>
         <local:WeatherInfoViewModel/>
     </Window.DataContext>
+    
     <Grid>
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -72,6 +50,7 @@
                 <TextBox x:Name="longitudeTextBox" Width="100" VerticalAlignment="Center"/>
                 <Button Content="Get Weather" Click="GetWeather_Click" Margin="10,0,0,0"/>
                 <TextBlock x:Name="weatherInfoTextBlock"   TextWrapping="Wrap"/>
+                <Button HorizontalAlignment="Right" Content="Map" Click="Button_Click"></Button>
             </StackPanel>
 
 
